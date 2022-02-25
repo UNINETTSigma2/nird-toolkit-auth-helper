@@ -5,7 +5,6 @@ Copyright © 2022 Sigma2 AS
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -49,7 +48,8 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.nird-toolkit-auth-helper.yaml)")
+	rootCmd.PersistentFlags().
+		StringVar(&cfgFile, "config", "", "config file (default is $HOME/.nird-toolkit-auth-helper.yaml)")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -72,7 +72,5 @@ func initConfig() {
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
-	}
+	viper.ReadInConfig()
 }
