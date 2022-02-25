@@ -5,7 +5,7 @@
 ### From source
 
 ```shell
-$ go install github.com/UNINETTSigma2/nird-toolkit-auth-helper
+$ go install github.com/UNINETTSigma2/nird-toolkit-auth-helper@latest
 ```
 
 ### Minimal kubeconfig
