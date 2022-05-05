@@ -22,10 +22,16 @@ jobs:
         with:
           go-version: 1.17
       -
-        name: Semantic versioning
+        name: Bump semantic version
+        id: bump-semver
         uses: jsok/svu-version-bump-action@v2
         with:
           bump: 'next'
+      -
+        name: Tag version
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.version }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
