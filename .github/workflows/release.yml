@@ -11,32 +11,29 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      -
-        name: Set up Go
+      - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
-      -
-        name: Bump semantic version
+      - name: Get current version
+        uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+      - name: Bump semantic version
         id: bump-semver
         uses: jsok/svu-version-bump-action@v2
         with:
           bump: 'next'
-      -
-        name: Tag version
+      - name: Tag version
+        if: ${{ steps.get-latest-tag.outputs.tag != steps.bump-semver.outputs.version && steps.bump-semver.outputs.version != null }}
         uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ steps.bump-semver.outputs.version }}
-      -
-        name: Run GoReleaser
+      - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
+        if: ${{ steps.get-latest-tag.outputs.tag != steps.bump-semver.outputs.version && steps.bump-semver.outputs.version != null }}
         with:
-          # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
           version: latest
           args: release --rm-dist
