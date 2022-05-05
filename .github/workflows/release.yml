@@ -22,6 +22,11 @@ jobs:
         with:
           go-version: 1.17
       -
+        name: Semantic versioning
+        uses: jsok/svu-version-bump-action@v2
+        with:
+          bump: 'next'
+      -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
