@@ -30,4 +30,4 @@ jobs:
           version: latest
           args: release --rm-dist
         env:
-          GITHUB_TOKEN: "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"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
