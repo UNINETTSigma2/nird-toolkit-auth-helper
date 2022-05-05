@@ -1,6 +1,7 @@
 # nird-toolkit-auth-helper
 
 ## Installing nird-toolkit-auth-helper
+You can download compiled binaries from the github release page.
 
 ### From source
 
