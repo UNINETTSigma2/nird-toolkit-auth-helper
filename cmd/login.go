@@ -201,6 +201,7 @@ var loginCmd = &cobra.Command{
 		})
 
 		mux.HandleFunc("/callback", func(w http.ResponseWriter, r *http.Request) {
+			// Verify state belongs to session
 			state, err := r.Cookie("state")
 			if err != nil {
 				http.Error(w, "state not found", http.StatusBadRequest)
@@ -212,6 +213,7 @@ var loginCmd = &cobra.Command{
 				return
 			}
 
+			// Exchange code for token using PKCE
 			oauth2Token, err := config.Exchange(
 				ctx,
 				r.URL.Query().Get("code"),
@@ -221,18 +223,21 @@ var loginCmd = &cobra.Command{
 				return
 			}
 
+			// Extract ID Token
 			rawIDToken, ok := oauth2Token.Extra("id_token").(string)
 			if !ok {
 				http.Error(w, "No id_token field in oauth2 token.2", http.StatusInternalServerError)
 				return
 			}
 
+			// Verify cryptographic integrity of token
 			idToken, err := verifier.Verify(ctx, rawIDToken)
 			if err != nil {
 				http.Error(w, "Failed to verify ID Token: "+err.Error(), http.StatusInternalServerError)
 				return
 			}
 
+			// Verify nonce to ensure this is not a replay attack.
 			nonce, err := r.Cookie("nonce")
 			if err != nil {
 				http.Error(w, "nonce not found", http.StatusBadRequest)
@@ -244,6 +249,7 @@ var loginCmd = &cobra.Command{
 				return
 			}
 
+			// Build response for kubectl
 			resp := struct {
 				OAuth2Token   *oauth2.Token
 				IDTokenClaims *json.RawMessage
@@ -278,15 +284,19 @@ var loginCmd = &cobra.Command{
 			// Show user success page
 			w.Header().Add("Content-Type", "text/html")
 			w.Write([]byte(successPage))
+
+			// Send close signal to HTTP server
 			stopCh <- struct{}{}
 		})
 
+		// Launch HTTP server
 		go func() {
 			if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 				log.Fatal(err)
 			}
 		}()
 
+		// Launch browser
 		go func(url string) {
 			browser.Stdout = os.Stderr
 			if err := browser.OpenURL(url); err != nil {
@@ -294,11 +304,14 @@ var loginCmd = &cobra.Command{
 			}
 		}("http://localhost:49999")
 
+		// Wait for close signal
 		<-stopCh
 
+		// Shutdown HTTP server
 		if err := srv.Shutdown(ctx); err != nil {
 			log.Fatal("Server shutdown failed")
 		}
+
 		return nil
 	},
 }
