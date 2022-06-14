@@ -319,7 +319,7 @@ var loginCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(loginCmd)
 
-	loginCmd.Flags().StringVar(&clientID, "client-id", "oidc-client-sample", "OIDC Client ID to use")
+	loginCmd.Flags().StringVar(&clientID, "client-id", "oidc-client-public", "OIDC Client ID to use")
 	viper.GetViper().BindPFlag("client-id", loginCmd.Flags().Lookup("client-id"))
 	loginCmd.Flags().
 		StringSliceVar(&scopes, "scopes", []string{"email", "profile", "openid"}, "OIDC scopes to request")
