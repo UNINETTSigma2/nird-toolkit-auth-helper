@@ -57,3 +57,4 @@ users:
 $ kubectl config use-context nird-trd
 $ kubectl get ns
 ```
+
