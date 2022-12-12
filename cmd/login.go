@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -28,7 +27,6 @@ import (
 	k8sjson "k8s.io/apimachinery/pkg/runtime/serializer/json"
 	"k8s.io/client-go/pkg/apis/clientauthentication/install"
 	"k8s.io/client-go/pkg/apis/clientauthentication/v1beta1"
-	"k8s.io/client-go/tools/auth/exec"
 )
 
 var scheme = runtime.NewScheme()
@@ -107,10 +105,10 @@ var loginCmd = &cobra.Command{
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 
-		obj, _, err := exec.LoadExecCredentialFromEnv()
-		if err != nil {
-			log.Fatal(err)
-		}
+		// obj, _, err := exec.LoadExecCredentialFromEnv()
+		// if err != nil {
+		// 	log.Fatal(err)
+		// }
 		serializer := k8sjson.NewSerializerWithOptions(
 			k8sjson.DefaultMetaFactory,
 			scheme,
@@ -121,7 +119,8 @@ var loginCmd = &cobra.Command{
 				Strict: true,
 			},
 		)
-		credentials := obj.(*v1beta1.ExecCredential)
+
+		// credentials := obj.(*v1beta1.ExecCredential)
 
 		// Setup OAuth2/OIDC configuration
 		ctx := context.Background()
@@ -151,6 +150,8 @@ var loginCmd = &cobra.Command{
 		if token != nil {
 
 			expiration := metav1.NewTime(token.Expiry)
+			credentials := &v1beta1.ExecCredential{}
+			credentials.APIVersion = "client.authentication.k8s.io/v1beta1"
 			credentials.Status = &v1beta1.ExecCredentialStatus{
 				Token:               token.AccessToken,
 				ExpirationTimestamp: &expiration,
@@ -261,6 +262,8 @@ var loginCmd = &cobra.Command{
 			}
 
 			expiration := metav1.NewTime(oauth2Token.Expiry)
+			credentials := &v1beta1.ExecCredential{}
+			credentials.APIVersion = "client.authentication.k8s.io/v1beta1"
 			credentials.Status = &v1beta1.ExecCredentialStatus{
 				Token:               oauth2Token.AccessToken,
 				ExpirationTimestamp: &expiration,
