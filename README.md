@@ -1,15 +1,24 @@
 # nird-toolkit-auth-helper
 
-## Installing nird-toolkit-auth-helper
-You can download compiled binaries from the github release page.
+## Requirements
+* go
+* kubectl
 
-### From source
+The authentication step must happen on a system with a graphical browser
+
+### 1. Install nird-toolkit-auth-helper from source
 
 ```shell
-$ go install github.com/UNINETTSigma2/nird-toolkit-auth-helper@latest
+go install github.com/UNINETTSigma2/nird-toolkit-auth-helper@latest
 ```
 
-### Minimal kubeconfig
+### 2. Add to path
+
+```shell
+export PATH=$PATH:~/go/bin
+```
+
+### 3. Save minimal kubeconfig to nird-lmd-config.yaml
 
 ```yaml
 apiVersion: v1
@@ -45,8 +54,25 @@ users:
       provideClusterInfo: true
 ```
 
+### 4. Set $KUBECONFIG
+
 ```shell
-$ kubectl config use-context nird-lmd
-$ kubectl get ns
+export KUBECONFIG=~/nird-lmd-config.yaml
 ```
 
+### 5. Verify nird-lmd context is installed
+```shell
+kubectl config get-contexts
+```
+
+### 6. Switch context
+ 
+```shell
+kubectl config use-context nird-lmd
+```
+
+### 7. Start authentication process
+
+```shell
+kubectl get ns
+```
