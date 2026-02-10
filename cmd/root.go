@@ -1,6 +1,5 @@
 /*
-Copyright © 2022 Sigma2 AS
-
+Copyright © 2026 Sigma2 AS
 */
 package cmd
 
