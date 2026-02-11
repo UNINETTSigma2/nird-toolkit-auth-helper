@@ -1,0 +1,37 @@
+name: Auto Tag
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: write 
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get latest tag
+        run: |
+          latest=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "LATEST_TAG=$latest" >> $GITHUB_ENV
+
+      - name: Compute next version
+        id: version
+        run: |
+          IFS='.' read -r major minor patch <<<"${LATEST_TAG#v}"
+          patch=$((patch+1))
+          new="v$major.$minor.$patch"
+          echo "new_tag=$new" >> $GITHUB_OUTPUT
+
+      - name: Create new tag
+        run: |
+          git tag ${{ steps.version.outputs.new_tag }}
+          git push origin ${{ steps.version.outputs.new_tag }}
