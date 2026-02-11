@@ -15,23 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Get current version
+        uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
 
-      - name: Get latest tag
-        run: |
-          latest=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "LATEST_TAG=$latest" >> $GITHUB_ENV
+      - name: Bump semantic version
+        id: bump-semver
+        uses: jsok/svu-version-bump-action@v2
+        with:
+          bump: 'next'
 
-      - name: Compute next version
-        id: version
-        run: |
-          IFS='.' read -r major minor patch <<<"${LATEST_TAG#v}"
-          patch=$((patch+1))
-          new="v$major.$minor.$patch"
-          echo "new_tag=$new" >> $GITHUB_OUTPUT
-
-      - name: Create new tag
-        run: |
-          git tag ${{ steps.version.outputs.new_tag }}
-          git push origin ${{ steps.version.outputs.new_tag }}
+      - name: Tag version
+        if: ${{ steps.get-latest-tag.outputs.tag != steps.bump-semver.outputs.version && steps.bump-semver.outputs.version != null }}
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.version }}
