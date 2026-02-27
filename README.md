@@ -11,6 +11,12 @@ $ go install github.com/UNINETTSigma2/nird-toolkit-auth-helper@latest
 
 ### Minimal kubeconfig
 
+* Where to put the minimal kubeconfig
+
+The minimal kubeconfig block below shall be placed in a file named `config` and located in the directory `$HOME/.kube/`. E.g. your config shall be here : `$HOME/.kube./config`. If the `.kube` directory and the `config` file are missing, just create them.
+
+* Minimal kubeconfig content (to be copied into the file `config`)
+
 ```yaml
 apiVersion: v1
 clusters:
@@ -45,8 +51,17 @@ users:
       provideClusterInfo: true
 ```
 
+### Usage
+
+Select the desired context, in this case `nird-lmd`
+
 ```shell
 $ kubectl config use-context nird-lmd
+```
+
+Test by trying a command. E.g. list all the namespaces
+
+```shell
 $ kubectl get ns
 ```
 
