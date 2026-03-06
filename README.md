@@ -37,7 +37,19 @@ The Headlamp binary is located in `Headlamp-0.40.1-linux-x64/headlamp`. Start th
 
 ## Step 3
 
-Go to the Add Cluster button 
+Go to the Add Cluster button in the left lower corner of the dashboard.
 
 ![alt text](images/add-cluster-button.png)
+
+If the cluster is not already selected by using the context from `.kube/config` file add the name nird-lmd.
+
+When you see the cluster list (here `nird-lmd`) 
+
+![alt text](images/cluster-list.png)
+
+select the cluster.
+
+In the next page, go to `Namspaces` and select the one you have access to.
+
+![alt text](images/namespaces.png)
 
