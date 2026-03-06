@@ -53,3 +53,11 @@ In the next page, go to `Namspaces` and select the one you have access to.
 
 ![alt text](images/namespaces.png)
 
+## Step 4
+
+You can access you data from the left panel.
+
+FOr example the pods are in the menu `Workloads`. Select the pods, then click on a pod. A pod's window will open. You can enter the pod by cliking on the small icon with the promt arrow.
+
+![alt text](images/pods.png)
+
