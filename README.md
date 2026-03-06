@@ -36,7 +36,7 @@ The process `nird-toolkit-auth-helper` must not be running whan you launch _Head
 
 ## Step 2 
 
-Start the binary `Headlamp-0.40.1-linux-x64/headlamp`. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
+Start the binary `Headlamp-0.40.1-linux-x64/headlamp`. It will automatically open your default browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. Close the window and go the the Headlamp dashboard.
 
 ## Step 3
 
@@ -63,4 +63,8 @@ You can access you data from the left panel.
 For example, the pods are accessible in the menu `Workloads`. Select `Pods`, then click on a pod. The selected pod's window will open. You can enter the pod via terminal window by cliking on the small icon with the promt arrow.
 
 ![alt text](images/pods.png)
+
+# Logging out
+
+After logging to Feide via your browser, there is no simple method to log out. The logging status is actually maintained by a session token which is stored in a file  `.nird-toolkit-auth-helper.yaml` in your home directory. Just delete the file and your session will be terminated. If you want to log in again, you shall follow the entire procedure described here once again.
 
