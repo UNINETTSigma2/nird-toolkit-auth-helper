@@ -39,5 +39,5 @@ The Headlamp binary is located in `Headlamp-0.40.1-linux-x64/headlamp`. Start th
 
 Go to the Add Cluster button 
 
-![alt text](images/add-cluster.png)
+![alt text](images/add-cluster-button.png)
 
