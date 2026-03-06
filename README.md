@@ -36,7 +36,7 @@ The process `nird-toolkit-auth-helper` must not be running whan you launch _Head
 
 ## Step 2 
 
-Start the binary. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
+Start the binary `Headlamp-0.40.1-linux-x64/headlamp`. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
 
 ## Step 3
 
