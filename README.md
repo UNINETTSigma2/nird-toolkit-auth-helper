@@ -10,10 +10,25 @@ The tool Headlamp can be downloaded from here:
 
 https://headlamp.dev/
 
-# Installation 
+(This is the routine for Linux, for the other OS, check the link **Install on other platforms**)
 
-This is the routine for Linux, for the other OS, check the link **Install on other platforms**
-
-Go to the site and select the *Headlamp-0.40.1-linux-x64.tar.gz* version in the dropdown `Download for Linux`:
+Select the *Headlamp-0.40.1-linux-x64.tar.gz* version in the dropdown `Download for Linux`:
 
 ![alt text](images/select-headlamp-version.png)
+
+
+# Installation 
+
+## Step 1 
+
+Please make sure you do not have a process `nird-toolkit-auth-helper` (or another name) running on port 49999!
+
+* In Linux,  try `netstat -tulnap`, get the process number and run `kill -9 PROCESS-NUMBER`.
+* Im MacOS, try `lsof -nP -iTCP -sTCP:LISTEN`, get the process number and run `kill -9 PROCESS-NUMBER`.
+
+If you have a process running on this port from before it will spawn a big number of broswer tabs pointing at Feide site when you launch *Headlamp*. 
+
+The process `nird-toolkit-auth-helper` must not be running whan you launch _Headlamp_!
+
+## Step 2 
+
