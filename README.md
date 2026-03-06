@@ -29,7 +29,7 @@ As a prerequisite, you must have installed and configured the tool `nird-toolkit
 
 https://github.com/UNINETTSigma2/nird-toolkit-auth-helper
 
-Yet, make sure you do not have a process `nird-toolkit-auth-helper` (or another name) running on port 49999 when starting _Headlamp_!
+Yet, make sure you do not have a process `nird-toolkit-auth-helper` running on port 49999 when starting _Headlamp_!
 
 * In Linux,  try `netstat -tulnap`, get the process number and run `kill -9 PROCESS-NUMBER`.
 * Im MacOS, try `lsof -nP -iTCP -sTCP:LISTEN`, get the process number and run `kill -9 PROCESS-NUMBER`.
