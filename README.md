@@ -41,7 +41,7 @@ Go to the Add Cluster button in the left lower corner of the dashboard.
 
 ![alt text](images/add-cluster-button.png)
 
-If the cluster is not already selected by using the context from `.kube/config` file add the name nird-lmd.
+In case the cluster is not already selected by using the context from `.kube/config` file, add the name nird-lmd.
 
 When you see the cluster list (here `nird-lmd`) 
 
