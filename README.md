@@ -45,7 +45,7 @@ If the cluster is not already selected by using the context from `.kube/config` 
 
 When you see the cluster list (here `nird-lmd`) 
 
-![alt text](images/cluster-list.png)
+![alt text](images/cluster-list-user.png)
 
 select the cluster.
 
