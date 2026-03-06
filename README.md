@@ -36,7 +36,7 @@ Yet, make sure you do not have a process `nird-toolkit-auth-helper` running on p
 
 If you have a process running on this port from before it will spawn a big number of broswer tabs pointing at Feide site when you launch *Headlamp*. 
 
-The process `nird-toolkit-auth-helper` must not be running whan you launch _Headlamp_!
+**The process `nird-toolkit-auth-helper` must not be running whan you launch _Headlamp_!**
 
 ## Step 2 
 
