@@ -19,6 +19,10 @@ Select the *Headlamp-0.40.1-linux-x64.tar.gz* version in the dropdown `Download 
 
 # Installation 
 
+After unpacking, the Headlamp binary is located in `Headlamp-0.40.1-linux-x64/headlamp`. That's all!
+
+# Usage
+
 ## Step 1 
 
 Please make sure you do not have a process `nird-toolkit-auth-helper` (or another name) running on port 49999!
@@ -30,10 +34,9 @@ If you have a process running on this port from before it will spawn a big numbe
 
 The process `nird-toolkit-auth-helper` must not be running whan you launch _Headlamp_!
 
-
 ## Step 2 
 
-The Headlamp binary is located in `Headlamp-0.40.1-linux-x64/headlamp`. Start the binary. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
+Start the binary. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
 
 ## Step 3
 
