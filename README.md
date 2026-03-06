@@ -30,5 +30,14 @@ If you have a process running on this port from before it will spawn a big numbe
 
 The process `nird-toolkit-auth-helper` must not be running whan you launch _Headlamp_!
 
+
 ## Step 2 
+
+The Headlamp binary is located in `Headlamp-0.40.1-linux-x64/headlamp`. Start the binary. It will automatically run a browser with a Feide authentication window. Follow the steps until you see a success message in your browser window. CLose the window and go the the Headlamp dashboard.
+
+## Step 3
+
+Go to the Add Cluster button 
+
+![alt text](images/add-cluster.png)
 
