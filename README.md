@@ -66,9 +66,12 @@ Test by trying a command. E.g. list all the namespaces
 $ kubectl get ns
 ```
 
-
+&nbsp;
+&nbsp;
 
 # Headlamp - a graphical interface to the Kubernetes cluster
+
+&nbsp;
 
 ![alt text](images/logo.svg)
 
